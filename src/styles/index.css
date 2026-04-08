@@ -1,0 +1,69 @@
+/* ─── Reset ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ─── Design tokens ─────────────────────────────────── */
+:root {
+  --color-bg:           #f8f7f4;
+  --color-surface:      #ffffff;
+  --color-border:       rgba(0,0,0,0.10);
+  --color-border-hover: rgba(0,0,0,0.20);
+
+  --color-text-primary:   #1a1a18;
+  --color-text-secondary: #6b6b66;
+  --color-text-muted:     #9f9f99;
+
+  /* semantic */
+  --color-added-bg:   #eaf3de;
+  --color-added-text: #3b6d11;
+  --color-rem-bg:     #fcebeb;
+  --color-rem-text:   #a32d2d;
+
+  --color-step1-badge-bg:   #fcebeb;
+  --color-step1-badge-text: #a32d2d;
+  --color-step2-badge-bg:   #e6f1fb;
+  --color-step2-badge-text: #185fa5;
+  --color-step3-badge-bg:   #eaf3de;
+  --color-step3-badge-text: #3b6d11;
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg:           #18181a;
+    --color-surface:      #212123;
+    --color-border:       rgba(255,255,255,0.09);
+    --color-border-hover: rgba(255,255,255,0.20);
+
+    --color-text-primary:   #e8e6df;
+    --color-text-secondary: #8c8c87;
+    --color-text-muted:     #5c5c58;
+
+    --color-added-bg:   #173404;
+    --color-added-text: #c0dd97;
+    --color-rem-bg:     #501313;
+    --color-rem-text:   #f7c1c1;
+
+    --color-step1-badge-bg:   #501313;
+    --color-step1-badge-text: #f7c1c1;
+    --color-step2-badge-bg:   #042c53;
+    --color-step2-badge-text: #b5d4f4;
+    --color-step3-badge-bg:   #173404;
+    --color-step3-badge-text: #c0dd97;
+  }
+}
+
+/* ─── Base ───────────────────────────────────────────── */
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  min-height: 100dvh;
+}

@@ -1,0 +1,49 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.chip {
+  display: inline-block;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  padding: 3px 10px;
+  border-radius: 999px;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+/* variants */
+.muted {
+  background: var(--color-border);
+  color: var(--color-text-secondary);
+}
+
+.info {
+  background: var(--color-step2-badge-bg);
+  color: var(--color-step2-badge-text);
+}
+
+.danger {
+  background: var(--color-step1-badge-bg);
+  color: var(--color-step1-badge-text);
+}
+
+.success {
+  background: var(--color-step3-badge-bg);
+  color: var(--color-step3-badge-text);
+}
+
+.warning {
+  background: #faeeda;
+  color: #854f0b;
+}
+
+@media (prefers-color-scheme: dark) {
+  .warning {
+    background: #412402;
+    color: #fac775;
+  }
+}

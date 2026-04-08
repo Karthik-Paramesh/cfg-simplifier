@@ -1,0 +1,74 @@
+.card {
+  background: var(--color-surface);
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.hint {
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.hint code {
+  font-family: var(--font-mono);
+  background: var(--color-border);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 130px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--color-text-primary);
+  background: var(--color-bg);
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.textarea:focus {
+  border-color: var(--color-border-hover);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.exBtn {
+  font-size: 12px;
+  font-family: var(--font-sans);
+  background: transparent;
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 5px 13px;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  transition: background 0.12s, border-color 0.12s;
+}
+
+.exBtn:hover {
+  background: var(--color-border);
+  border-color: var(--color-border-hover);
+}

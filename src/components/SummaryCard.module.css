@@ -1,0 +1,141 @@
+.card {
+  background: var(--color-surface);
+  border: 0.5px solid var(--color-border-hover);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  animation: fadeUp 0.3s ease 0.25s both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1.1rem;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--color-step2-badge-bg);
+  color: var(--color-step2-badge-text);
+}
+
+.counts {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+}
+
+/* ─── Two-column body ────────── */
+.body {
+  display: grid;
+  grid-template-columns: 1fr 0.5px 1fr;
+  gap: 0 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 600px) {
+  .body {
+    grid-template-columns: 1fr;
+  }
+  .divider {
+    display: none;
+  }
+}
+
+.divider {
+  background: var(--color-border);
+  width: 0.5px;
+  align-self: stretch;
+}
+
+/* ─── Property table ─────────── */
+.props {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.propRow {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.propLabel {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+}
+
+.propValue {
+  font-size: 13px;
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  line-height: 1.6;
+}
+
+/* ─── Grammar box ────────────── */
+.gramBox {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.prodRow {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 5px 0;
+  border-bottom: 0.5px solid var(--color-border);
+}
+
+.prodRow:last-child {
+  border-bottom: none;
+}
+
+.prodLhs {
+  min-width: 20px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  flex-shrink: 0;
+}
+
+.startLhs {
+  color: var(--color-step2-badge-text);
+}
+
+.prodArrow {
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.prodAlts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+}
+
+.altSep {
+  color: var(--color-text-muted);
+  padding: 0 2px;
+}
+
+.altText {
+  color: var(--color-text-primary);
+}
