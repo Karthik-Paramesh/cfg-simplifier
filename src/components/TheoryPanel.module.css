@@ -1,0 +1,118 @@
+.panel {
+  background: var(--color-surface);
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  margin-bottom: 0.25rem;
+  overflow: hidden;
+  animation: fadeUp 0.25s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.25rem;
+  border-bottom: 0.5px solid var(--color-border);
+  background: var(--color-bg);
+}
+
+.panelTitle {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-text-muted);
+}
+
+.panelControls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ctrl {
+  font-size: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  padding: 0;
+  font-family: var(--font-sans);
+  transition: color 0.12s;
+}
+
+.ctrl:hover {
+  color: var(--color-text-primary);
+}
+
+.ctrlSep {
+  color: var(--color-border-hover);
+  font-size: 12px;
+}
+
+/* ─── Section ─────────────────── */
+.section {
+  border-bottom: 0.5px solid var(--color-border);
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+.sectionHead {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.12s;
+}
+
+.sectionHead:hover {
+  background: var(--color-bg);
+}
+
+.sectionTitle {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.chevron {
+  font-size: 9px;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+/* ─── Body ────────────────────── */
+.sectionBody {
+  padding: 0 1.25rem 1.1rem;
+  border-top: 0.5px solid var(--color-border);
+  background: var(--color-bg);
+}
+
+.line {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  font-family: var(--font-sans);
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+.line:first-child {
+  padding-top: 0.9rem;
+}
+
+.spacer {
+  height: 0.5rem;
+}

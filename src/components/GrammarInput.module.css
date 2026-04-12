@@ -5,11 +5,18 @@
   padding: 1.25rem;
 }
 
+.topRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
 .label {
   font-size: 13px;
   font-weight: 500;
   color: var(--color-text-secondary);
-  margin-bottom: 10px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -29,6 +36,34 @@
   border-radius: 4px;
 }
 
+kbd {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  background: var(--color-border);
+  border: 0.5px solid var(--color-border-hover);
+  border-radius: 4px;
+  padding: 1px 5px;
+  color: var(--color-text-secondary);
+}
+
+.clearBtn {
+  font-size: 11px;
+  font-family: var(--font-sans);
+  background: transparent;
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 3px 10px;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+  transition: color 0.12s, border-color 0.12s;
+}
+
+.clearBtn:hover {
+  color: var(--color-step1-badge-text);
+  border-color: var(--color-step1-badge-text);
+}
+
 .textarea {
   width: 100%;
   min-height: 130px;
@@ -45,15 +80,80 @@
   transition: border-color 0.15s;
 }
 
-.textarea:focus {
+.textarea::placeholder {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.textarea.focused {
   border-color: var(--color-border-hover);
 }
 
+/* ─── Format guide ───────────── */
+.formatGuide {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.guideItem code {
+  font-family: var(--font-mono);
+  background: var(--color-border);
+  padding: 1px 5px;
+  border-radius: 4px;
+  color: var(--color-text-secondary);
+}
+
+.guideSep {
+  color: var(--color-border-hover);
+}
+
+/* ─── Actions row ────────────── */
 .actions {
   display: flex;
-  gap: 8px;
-  margin-top: 12px;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
   flex-wrap: wrap;
+}
+
+.simplifyBtn {
+  font-size: 13px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  background: var(--color-text-primary);
+  color: var(--color-surface);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 8px 20px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  flex-shrink: 0;
+}
+
+.simplifyBtn:hover {
+  opacity: 0.85;
+}
+
+.simplifyBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.exGroup {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.exLabel {
+  font-size: 12px;
+  color: var(--color-text-muted);
 }
 
 .exBtn {
