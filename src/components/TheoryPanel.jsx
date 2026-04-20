@@ -5,12 +5,12 @@ const SECTIONS = [
   {
     id: 'cfg',
     title: 'What is a CFG?',
-    body: `A Context-Free Grammar (CFG) is a formal grammar used in TAFL (Theory of Automata and Formal Languages) to describe the syntax of programming languages, natural languages, and more.
+    body: `A Context-Free Grammar (CFG) is a formal grammar used in TAFL (Theory of Automata, Formal Languages and Computation) to describe the syntax of programming languages, natural languages, and more.
 
-A CFG is defined as a 4-tuple G = (V, Σ, P, S) where:
-• V — a finite set of variables (non-terminals), e.g. A, B
+A CFG G is defined as a 4-tuple G = (V, Σ, R, S) where:
+• V — a finite set of variables (non-terminals), e.g. S, A, B
 • Σ — a finite set of terminals (actual symbols), e.g. a, b, 0, 1
-• P — a finite set of production rules of the form A → α
+• R — a finite set of production rules of the form A → α
 • S ∈ V — the designated start symbol
 
 A string w is in the language L(G) if S ⟹* w using the production rules.`,
@@ -20,37 +20,21 @@ A string w is in the language L(G) if S ⟹* w using the production rules.`,
     title: 'Why simplify a CFG?',
     body: `Raw CFGs often contain redundant or problematic productions that complicate parsing and proofs. Simplification produces an equivalent grammar — one that generates exactly the same language — but without the noise.
 
-Simplified grammars are required for:
-• Converting to Chomsky Normal Form (CNF) for the CYK parsing algorithm
-• Converting to Greibach Normal Form (GNF)
-• Proving properties of context-free languages
-• Efficient parser construction (LL, LR parsers)`,
+The correct TAFL order of simplification is:
+  1. Remove null (ε) productions
+  2. Remove unit productions
+  3. Remove useless symbols
+
+This order is mandatory because:
+• Removing ε-productions first may introduce new unit productions — which step 2 then cleans up
+• Removing unit productions may leave behind useless symbols — which step 3 then cleans up
+• Doing useless symbol removal first would be premature since steps 1 and 2 change reachability
+
+Simplified grammars are required for converting to Chomsky Normal Form (CNF), Greibach Normal Form (GNF), and for efficient parser construction.`,
   },
   {
     id: 'step1',
-    title: 'Step 1 — Useless symbols',
-    body: `A symbol X is useless if it is non-generating OR non-reachable.
-
-Non-generating: A variable A is generating if A ⟹* w for some terminal string w. Variables that can never produce any terminal string are non-generating and are removed first.
-
-Algorithm — fix-point iteration:
-  1. Mark all terminals as generating
-  2. If A → α and every symbol in α is generating, mark A as generating
-  3. Repeat until no new variables are marked
-  4. Remove all non-generating variables and their productions
-
-Non-reachable: After the above, a variable A is reachable if S ⟹* αAβ for some strings α, β. Variables never appearing in any derivation from S are removed.
-
-Algorithm:
-  1. Mark S as reachable
-  2. If A is reachable and A → α, mark every variable in α as reachable
-  3. Repeat until stable; remove all non-reachable variables
-
-Correctness: Removing useless symbols produces an equivalent grammar because useless symbols contribute nothing to the language L(G).`,
-  },
-  {
-    id: 'step2',
-    title: 'Step 2 — Null (ε) productions',
+    title: 'Step 1 — Eliminate null (ε) productions',
     body: `A variable A is nullable if A ⟹* ε. Productions of the form A → ε are called null productions and must be eliminated (except S → ε if ε ∈ L(G)).
 
 Algorithm:
@@ -67,8 +51,8 @@ Algorithm:
 Correctness: Every derivation that previously used A → ε is now handled by the new alternatives generated in step 2.`,
   },
   {
-    id: 'step3',
-    title: 'Step 3 — Unit productions',
+    id: 'step2',
+    title: 'Step 2 — Remove unit productions',
     body: `A unit production is a rule of the form A → B where B is a single variable. They create unnecessary indirection in derivations and must be removed.
 
 Unit pairs: (A, B) is a unit pair if A ⟹* B using only unit productions. Computed transitively:
@@ -84,20 +68,42 @@ Algorithm:
 Correctness: Every derivation A ⟹* B ⟹ α is now captured directly by A → α, so the language is preserved.`,
   },
   {
+    id: 'step3',
+    title: 'Step 3 — Remove useless symbols',
+    body: `A symbol X is useless if it is non-generating OR non-reachable. This step is done last because steps 1 and 2 may have already eliminated productions that were making certain variables reachable or generating.
+
+Non-generating: A variable A is generating if A ⟹* w for some terminal string w.
+
+Algorithm:
+  1. Mark all terminals as generating
+  2. If A → α and every symbol in α is generating, mark A as generating
+  3. Repeat until stable; remove all non-generating variables and their productions
+
+Non-reachable: After the above, a variable A is reachable if S ⟹* αAβ for some strings α, β.
+
+Algorithm:
+  1. Mark S as reachable
+  2. If A is reachable and A → α, mark every variable in α as reachable
+  3. Repeat until stable; remove all non-reachable variables
+
+Correctness: Removing useless symbols produces an equivalent grammar because useless symbols contribute nothing to L(G).`,
+  },
+  {
     id: 'verify',
     title: 'How to verify the output',
     body: `After all three steps, the simplified grammar should satisfy:
 
-✓ No useless symbols — every variable is both generating and reachable from S
 ✓ No ε-productions — no rule A → ε exists (except S → ε if ε ∈ L(G))
 ✓ No unit productions — no rule A → B where B is a single variable
+✓ No useless symbols — every variable is both generating and reachable from S
 
 Manual check:
-1. Pick any variable and trace derivations — you should always reach terminals
-2. Start from S and confirm every variable in the grammar is reachable
-3. Check each production — none should be a single variable on the RHS
+1. Check each production — none should be A → ε (except possibly S → ε)
+2. Check each production — none should be A → B where B is a single variable
+3. Pick any variable and trace derivations — you should always reach terminals
+4. Start from S and confirm every variable in the grammar is reachable
 
-The simplified grammar generates exactly the same language as the original. You can verify this by tracing a few sample strings through both grammars and confirming they produce the same accept/reject results.`,
+The simplified grammar generates exactly the same language as the original.`,
   },
 ]
 
